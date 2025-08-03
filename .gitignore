@@ -1,0 +1,376 @@
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*
+!.env.example
+
+*.key
+*.pem
+secrets/
+config/secrets/
+
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+backend/venv/
+backend/env/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# ============================================================================
+# NODE.JS (Frontend - React)
+# ============================================================================
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Grunt intermediate storage
+.grunt
+
+# Bower dependency directory
+bower_components
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons
+build/Release
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript v1 declaration files
+typings/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache
+.cache
+.parcel-cache
+
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Vite
+dist-ssr
+*.local
+
+# Rollup.js default build output
+dist/
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Go workspace file
+go.work
+
+# Dependency directories
+vendor/
+
+# Go module cache
+go.sum
+
+# Air live reload tool
+tmp/
+
+# MongoDB
+*.mongodb
+*.db
+
+# SQLite
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# PostgreSQL
+*.dump
+
+# Redis
+dump.rdb
+
+# Database backups
+*.sql
+*.backup
+*.bak
+
+
+# Docker Compose override files
+docker-compose.override.yml
+docker-compose.override.yaml
+
+data/
+volumes/
+mongodb_data/
+redis_data/
+
+# Docker logs
+docker-logs/
+
+# Log files
+*.log
+logs/
+log/
+Infiya_api.log
+*.log.*
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+.temp/
+
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Atom
+.atom/
+
+build/
+dist/
+out/
+target/
+
+# Generated documentation
+docs/_build/
+docs/build/
+
+# Generated API documentation
+api-docs/
+
+# Static assets
+static/
+assets/build/
+
+
+# CI/CD artifacts
+.github/workflows/artifacts/
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
+
+# Local configuration files
+local.conf
+local.yaml
+local.json
+
+
+
+# SSL certificates
+*.crt
+*.cer
+*.p12
+*.pfx
+
+Infiya_*.log
+Infiya_debug.json
+
+
+# Vector database files
+chroma_db/
+embeddings/
+vectors/
+
+# News data cache
+news_cache/
+article_cache/
+
+# User uploaded files
+uploads/
+user_data/
+
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+
+# Test binary
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Go workspace file
+go.work
+
+# Logs
+logs/
+*.log
+
+# Environment files
+.env.local
+.env.production
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+
+
+!.env.example
+!.gitkeep
+!README.md
+!requirements.txt
+!package.json
+!go.mod
+!docker-compose.yml
+!Dockerfile
+!Makefile
