@@ -19,6 +19,7 @@ Check out a Demo here : https://youtu.be/LQrPyYm8j8Q
 High Level Design : <img width="1474" height="816" alt="Image" src="https://github.com/user-attachments/assets/6bfe98d4-08c1-4d23-9b3a-a7614acd18a2" />
 
 Agent Pipeline Architecture : <img width="1195" height="719" alt="Image" src="https://github.com/user-attachments/assets/0e6a1f02-707f-43e6-b4ce-acc94dde79e8" />
+Edit : CaptionEnhancer Agent runs in parallel with the scrapper agent. 
 
 ### Components
 
@@ -63,118 +64,9 @@ Agent Pipeline Architecture : <img width="1195" height="719" alt="Image" src="ht
 - **MongoDB** 4.4+
 - **Redis** 6.0+
 - **Docker**
+- **Ollama**
+- **Docker** 
 
-## 🚀 Quick Start
-
-### 1. Clone Repository
-
-```bash
-git clone <repository-url>
-cd Infiya
-```
-
-### 2. Environment Setup
-
-#### Backend
-
-```bash
-cd backend
-cp .env.example .env
-# Edit .env with your configuration
-pip install -r requirements.txt
-```
-
-#### Frontend
-
-```bash
-cd frontend
-npm install
-cp .env.example .env
-# Edit .env with your configuration
-```
-
-#### Pipeline
-
-```bash
-cd pipeline
-cp .env.example .env
-# Edit .env with your configuration
-go mod download
-```
-
-### 3. Architecture Setup
-
-```bash
-# Start MongoDB and Redis
-docker-compose up -d
-
-```
-
-### 4. Run Ollama with a embedding Model (I Recommend nomic-embed-text)
-
-### 4. Run Services
-
-#### Start Backend
-
-```bash
-cd backend
-python main.py
-# Runs on http://localhost:8000
-```
-
-#### Start Frontend
-
-```bash
-cd frontend
-npm run dev
-# Runs on http://localhost:5173
-```
-
-#### Start Pipeline
-
-```bash
-cd pipeline
-go run cmd/server/main.go
-# Runs on http://localhost:8080
-```
-
-### 5. Access Application
-
-Open http://localhost:5173 in your browser
-
-## 🔧 Configuration
-
-### Environment Variables
-
-#### Backend (.env)
-
-```env
-MONGODB_URL=mongodb://localhost:27017
-DATABASE_NAME=anya_db
-REDIS_URL=redis://localhost:6379
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-JWT_SECRET_KEY=your_jwt_secret
-PIPELINE_URL=http://localhost:8080
-```
-
-#### Frontend (.env)
-
-```env
-VITE_API_URL=http://localhost:8000
-VITE_GOOGLE_CLIENT_ID=your_google_client_id
-```
-
-#### Pipeline (.env)
-
-```env
-REDIS_URL=
-OLLAMA_URL=
-CHROMADB_URL=
-NEWS_API_KEY=your_news_api_key
-YOUTUBE_API_KEY=your_youtube_api_key
-GEMINI_API_KEY=
-```
 
 ## 🤖 AI Agents
 
@@ -211,7 +103,6 @@ Choose from different AI anchor personalities:
 ### Authentication
 
 - `POST /api/v1/auth/google` - Google OAuth login
-- `POST /api/v1/auth/refresh` - Refresh JWT token
 - `POST /api/v1/auth/logout` - User logout
 
 ### Chat
@@ -224,71 +115,24 @@ Choose from different AI anchor personalities:
 
 - `GET /api/v1/users/me` - Get current user
 - `PUT /api/v1/users/preferences` - Update preferences
-- `GET /api/v1/users/stats` - Get user statistics
 
 ### Pipeline
 
-- `POST /api/v1/workflow/process` - Process user query
-- `GET /api/v1/workflow/status/{id}` - Get workflow status
+- `POST /api/v1/workflow/execute` - Process user query
 - `GET /api/v1/health` - Health check
 
-## 🐳 Docker Deployment
+## 🐳 Local requirements
 
 ```bash
-# Build and run all services
+# Build and run all required services 
 docker-compose up -d
-
-# View logs
-docker-compose logs -f
 
 # Stop services
 docker-compose down
 ```
+## Notes : 
+1. You must have ollama running locally with a embedding model. I used nomic-embed-text:latest  
+2. Look at the Settings.py and Config.go for the env requirements ( I am lazy to write it here for you) 
+3. This Project is made so that it strictly remains under Gemini free limits , but it depends on your usage.  
 
-## 🧪 Testing
-
-### Backend Tests
-
-```bash
-cd backend
-pytest tests/
-```
-
-### Frontend Tests
-
-```bash
-cd frontend
-npm test
-```
-
-### Pipeline Tests
-
-```bash
-cd pipeline
-go test ./...
-```
-
-## 📈 Monitoring
-
-- **Health Checks** - Available at `/health` endpoints
-- **Metrics** - Prometheus metrics at `/metrics`
-- **Logs** - Structured logging with configurable levels
-- **Agent Status** - Real-time workflow monitoring
-
-## 🔒 Security
-
-- **JWT Authentication** - Secure token-based auth
-- **Google OAuth** - Trusted third-party authentication
-- **Input Validation** - Pydantic models for data validation
-- **CORS Configuration** - Proper cross-origin setup
-- **Rate Limiting** - API rate limiting (configurable)
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
-
-**Built with ❤️**
+**Built with ❤️ and for ❤️**
