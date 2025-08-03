@@ -19,6 +19,7 @@ Check out a Demo here : https://youtu.be/LQrPyYm8j8Q
 High Level Design : <img width="1474" height="816" alt="Image" src="https://github.com/user-attachments/assets/6bfe98d4-08c1-4d23-9b3a-a7614acd18a2" />
 
 Agent Pipeline Architecture : <img width="1195" height="719" alt="Image" src="https://github.com/user-attachments/assets/0e6a1f02-707f-43e6-b4ce-acc94dde79e8" />
+Edit : CaptionEnhancer Agent runs in parallel with the scrapper agent. 
 
 ### Components
 
