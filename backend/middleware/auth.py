@@ -13,7 +13,6 @@ from functools import wraps
 logger = logging.getLogger(__name__)
 
 
-# HTTP Bearer token scheme
 security = HTTPBearer()
 
 class AuthMiddleware:
@@ -129,7 +128,6 @@ async def get_current_verified_user(current_user: User = Depends(get_current_use
         )
     return current_user
 
-# Optional: Dependency for users who completed onboarding
 async def get_onboarded_user(current_user: User = Depends(get_current_user)) -> User:
     """
     FastAPI dependency to get user who completed onboarding
@@ -142,7 +140,6 @@ async def get_onboarded_user(current_user: User = Depends(get_current_user)) -> 
         )
     return current_user
 
-# Token creation helper functions
 
 def create_user_token(user: User) -> str:
     """Create JWT token for a user"""
@@ -167,29 +164,24 @@ def create_token_with_expiry(user: User, expires_hours: int = 24) -> str:
     expires_delta = timedelta(hours=expires_hours)
     return auth_middleware.create_access_token(token_data, expires_delta)
 
-# Decorator for route protection (alternative to Depends)
 def require_auth(f):
     """Decorator to require authentication for a function"""
     @wraps(f)
     async def decorated_function(*args, **kwargs):
-        # This would be used if you want decorator-style auth instead of Depends
-        # Generally, FastAPI Depends is preferred
         return await f(*args, **kwargs)
     return decorated_function
 
-# Rate limiting helpers (for future use)
 class RateLimiter:
     """Simple rate limiter for authenticated users"""
     
     def __init__(self):
-        self.requests = {}  # In production, use Redis
+        self.requests = {}  # Todo : Use Redis here 
     
     async def check_rate_limit(self, user_id: str, limit: int = 100, window: int = 3600) -> bool:
         """Check if user is within rate limit"""
         now = datetime.utcnow().timestamp()
         user_requests = self.requests.get(user_id, [])
         
-        # Remove requests outside the window
         user_requests = [req_time for req_time in user_requests if now - req_time < window]
         
         if len(user_requests) >= limit:

@@ -15,7 +15,6 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 security = HTTPBearer()
 
-# Pydantic request models for proper validation
 class PreferencesUpdateRequest(BaseModel):
     """Request model for updating user preferences"""
     news_personality: Optional[NewsPersonalityEnum] = None

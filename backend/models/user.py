@@ -181,7 +181,6 @@ class UserProfile(BaseModel):
     timezone: str = Field(default="UTC")
 
 class UserStats(BaseModel):
-    """User usage statistics"""
     model_config = ConfigDict(validate_assignment=True)
     
     total_conversations: int = 0
@@ -269,10 +268,6 @@ class User(BaseModel):
                 
     
     def get_chat_history(self , limit : Optional[int] = None) -> List[ChatMessage]:
-        """ 
-        Get chat history with optinal limit - it guaranteed chronological ordering 
-        """
-        
         if limit : 
             return self.chat.messages[-limit:]
         return self.chat.messages

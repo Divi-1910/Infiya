@@ -6,13 +6,10 @@ from contextlib import asynccontextmanager
 import logging
 import time
 from typing import Dict, Any
-
-# Fixed imports - use absolute imports from the app package
 from core.config import settings
 from core.database import mongodb
 from api.v1.api import api_router
 
-# Configure logging
 logging.basicConfig(
     level=getattr(logging, settings.LOG_LEVEL.upper()),
     format=settings.LOG_FORMAT,
@@ -26,7 +23,6 @@ logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Manage application startup and shutdown"""
     logger.info("🚀 Starting Infiya API...")
     
     try:
@@ -36,12 +32,12 @@ async def lifespan(app: FastAPI):
         yield  
         
     except Exception as e:
-        logger.error(f"❌ Startup failed: {e}")
+        logger.error(f"Startup failed: {e}")
         raise
     finally:
         logger.info("🔄 Shutting down Infiya API...")
         await mongodb.disconnect()
-        logger.info("👋 Application shutdown completed")
+        logger.info("Application shutdown completed")
 
 # Create FastAPI application
 app = FastAPI(
@@ -93,7 +89,7 @@ async def add_process_time_header(request: Request, call_next):
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception) -> JSONResponse:
     """Handle unexpected exceptions"""
-    logger.error(f"❌ Unhandled exception: {exc}", exc_info=True)
+    logger.error(f"Unhandled exception: {exc}", exc_info=True)
     
     if settings.is_development():
         return JSONResponse(
@@ -159,7 +155,7 @@ async def health_check() -> Dict[str, Any]:
             "timestamp": time.time()
         }
     except Exception as e:
-        logger.error(f"❌ Health check failed: {e}")
+        logger.error(f" Health check failed: {e}")
         return {
             "status": "unhealthy",
             "service": "Infiya-api-gateway",

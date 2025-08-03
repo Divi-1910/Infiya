@@ -57,7 +57,6 @@ import WorkflowStats from "../components/WorkflowStats";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
 
-// Enhanced Agent Configuration
 const AGENT_CONFIG = {
   classifier: {
     name: "Intent Analyzer",
@@ -141,7 +140,6 @@ const AGENT_CONFIG = {
   }
 };
 
-// Custom Hooks
 const useAutosizeTextArea = (ref, value) => {
   useEffect(() => {
     if (ref?.current) {
@@ -234,7 +232,6 @@ const useSound = () => {
   return { enabled, playSound, toggleSound };
 };
 
-// Enhanced Components
 const Toast = ({ toast, onRemove }) => (
   <div
     className={`mb-2 p-4 rounded-lg shadow-lg backdrop-blur-lg border transition-all duration-300 animate-slide-in-right ${
@@ -377,7 +374,6 @@ const EnhancedThinkingIndicator = ({ agentProgress, onExpand }) => {
   ).length;
   const totalCount = agentProgress.length;
 
-  // Use the highest progress value from agents for smoother animation
   const maxProgress =
     agentProgress.length > 0
       ? Math.max(...agentProgress.map((a) => a.progress || 0)) * 100
@@ -429,7 +425,6 @@ const EnhancedThinkingIndicator = ({ agentProgress, onExpand }) => {
             </div>
           )}
 
-          {/* Thinking Animation */}
           <div className="flex items-center justify-center space-x-2 mb-4">
             <div
               className="w-2 h-2 bg-purple-400 rounded-full animate-bounce"
@@ -1452,7 +1447,6 @@ I'm your personalized AI news anchor, powered by advanced multi-agent analysis t
         </div>
       </footer>
 
-      {/* Settings Dialog */}
       <SettingsDialog
         isOpen={showSettings}
         onClose={() => setShowSettings(false)}

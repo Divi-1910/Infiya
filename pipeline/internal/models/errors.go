@@ -9,16 +9,15 @@ import (
 type ErrorType string
 
 const (
-	ErrorTypeValidation     ErrorType = "validation"
-	ErrorTypeNotFound       ErrorType = "not_found"
-	ErrorTypeUnauthorized   ErrorType = "unauthorized"
-	ErrorTypeTimeout        ErrorType = "timeout"
-	ErrorTypeRateLimit      ErrorType = "rate_limit"
-	ErrorTypeExternal       ErrorType = "external"
-	ErrorTypeInternal       ErrorType = "internal"
-	ErrorTypeUnavailable    ErrorType = "unavailable"
-	ErrorTypeCircuitBreaker ErrorType = "circuit_breaker"
-	ErrorTypeAgent          ErrorType = "agent"
+	ErrorTypeValidation   ErrorType = "validation"
+	ErrorTypeNotFound     ErrorType = "not_found"
+	ErrorTypeUnauthorized ErrorType = "unauthorized"
+	ErrorTypeTimeout      ErrorType = "timeout"
+	ErrorTypeRateLimit    ErrorType = "rate_limit"
+	ErrorTypeExternal     ErrorType = "external"
+	ErrorTypeInternal     ErrorType = "internal"
+	ErrorTypeUnavailable  ErrorType = "unavailable"
+	ErrorTypeAgent        ErrorType = "agent"
 )
 
 type AppError struct {
@@ -79,7 +78,6 @@ func (e *AppError) WithRetryAfter(duration time.Duration) *AppError {
 	return e
 }
 
-// Error constructors
 func NewValidationError(code, message, details string) *AppError {
 	return &AppError{
 		Type:       ErrorTypeValidation,

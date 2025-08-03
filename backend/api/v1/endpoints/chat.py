@@ -245,8 +245,6 @@ async def chat_health_check():
         raise HTTPException(status_code=503, detail="Chat service unhealthy")
 
 
-
-
 @router.post("/test/send-sse")
 async def test_send_sse(
     message: str,

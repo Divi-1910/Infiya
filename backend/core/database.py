@@ -24,12 +24,10 @@ class MongoDB:
                 serverSelectionTimeoutMS=5000,
             )
             
-            # Test the connection
             await self.client.admin.command('ping')
             
             self.database = self.client[settings.MONGODB_NAME]
             
-            # Create indexes
             await self._create_indexes()
             
             logger.info(f"✅ Connected to MongoDB: {settings.MONGODB_NAME}")
@@ -43,13 +41,13 @@ class MongoDB:
     
     async def disconnect(self):
         """Close database connection"""
-        if self.client is not None:  # Fixed: use 'is not None'
+        if self.client is not None: 
             self.client.close()
             logger.info("📪 Disconnected from MongoDB")
     
     async def _create_indexes(self):
         """Create necessary database indexes for optimal performance"""
-        if self.database is None:  # Fixed: use 'is None' instead of 'not self.database'
+        if self.database is None:  
             return
         
         try:
@@ -67,14 +65,14 @@ class MongoDB:
     
     def get_collection(self, name: str):
         """Get a collection by name"""
-        if self.database is None:  # Fixed: use 'is None'
+        if self.database is None:  
             raise RuntimeError("Database not connected")
         return self.database[name]
     
     async def health_check(self) -> dict:
         """Check database health"""
         try:
-            if self.client is None:  # Fixed: use 'is None'
+            if self.client is None: 
                 return {"status": "disconnected", "message": "No database connection"}
             
             # Ping the database
@@ -96,16 +94,14 @@ class MongoDB:
                 "message": str(e)
             }
 
-# Global MongoDB instance
 mongodb = MongoDB()
 
 def get_database() -> AsyncIOMotorDatabase:
     """Get the database instance"""
-    if mongodb.database is None:  # Fixed: use 'is None'
+    if mongodb.database is None:
         raise RuntimeError("Database not connected. Call mongodb.connect() first.")
     return mongodb.database
 
-# Database dependency for FastAPI
 async def get_db():
     """FastAPI dependency to get database"""
     return get_database()
